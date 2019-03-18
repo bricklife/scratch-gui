@@ -18,6 +18,8 @@ import text2speechImage from './text2speech.png';
 import text2speechInsetImage from './text2speech-small.svg';
 import makeymakeyImage from './makeymakey.png';
 import makeymakeyInsetImage from './makeymakey-small.svg';
+import boostImage from './boost.png';
+import boostInsetImage from './boost-small.svg';
 
 import microbitPeripheralImage from './peripheral-connection/microbit/microbit-illustration.svg';
 import microbitMenuImage from './peripheral-connection/microbit/microbit-small.svg';
@@ -169,6 +171,7 @@ export default [
         featured: true,
         disabled: false,
         bluetoothRequired: true,
+        internetConnectionRequired: true,
         launchPeripheralConnectionFlow: true,
         useAutoScan: false,
         peripheralImage: microbitPeripheralImage,
@@ -198,6 +201,7 @@ export default [
         featured: true,
         disabled: false,
         bluetoothRequired: true,
+        internetConnectionRequired: true,
         launchPeripheralConnectionFlow: true,
         useAutoScan: false,
         peripheralImage: ev3PeripheralImage,
@@ -227,6 +231,7 @@ export default [
         featured: true,
         disabled: false,
         bluetoothRequired: true,
+        internetConnectionRequired: true,
         launchPeripheralConnectionFlow: true,
         useAutoScan: true,
         peripheralImage: wedoPeripheralImage,
@@ -240,7 +245,24 @@ export default [
             />
         ),
         helpLink: 'https://scratch.mit.edu/wedo'
-
+    },
+    {
+        name: 'LEGO BOOST',
+        extensionId: 'boost',
+        collaborator: 'LEGO',
+        iconURL: boostImage,
+        insetIconURL: boostInsetImage,
+        description: (
+            <FormattedMessage
+                defaultMessage="Bring robotic creations to life."
+                description="Description for the 'LEGO BOOST' extension"
+                id="gui.extension.boost.description"
+            />
+        ),
+        featured: true,
+        disabled: true,
+        bluetoothRequired: true,
+        internetConnectionRequired: true
     },
     {
         name: 'LEGO Powered Up + Sensors',
@@ -257,6 +279,7 @@ export default [
         featured: true,
         disabled: false,
         bluetoothRequired: true,
+        internetConnectionRequired: true,
         launchPeripheralConnectionFlow: true,
         useAutoScan: true,
         peripheralImage: poweredUpPeripheralImage,
@@ -270,7 +293,6 @@ export default [
             />
         ),
         helpLink: 'https://scratch.mit.edu/wedo'
-
     },
     {
         name: 'LEGO Duplo Train',
@@ -287,6 +309,7 @@ export default [
         featured: true,
         disabled: false,
         bluetoothRequired: true,
+        internetConnectionRequired: true,
         launchPeripheralConnectionFlow: true,
         useAutoScan: true,
         peripheralImage: duploTrainPeripheralImage,
@@ -300,6 +323,5 @@ export default [
             />
         ),
         helpLink: 'https://scratch.mit.edu/wedo'
-
     }
 ];
