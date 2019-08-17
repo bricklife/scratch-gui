@@ -19,8 +19,8 @@ before_install:
 - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
 - npm install -g greenkeeper-lockfile
 install:
-- npm --production=false install
-- npm --production=false update
+- npm install
+- npm update
 - cd node_modules/scratch-vm && ln -s $(npm root)/google-closure-library ../closure-library --force && npm --production=false install && cd -
 before_script: greenkeeper-lockfile-update
 script:
