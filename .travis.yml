@@ -21,6 +21,7 @@ before_install:
 install:
 - npm --production=false install
 - npm --production=false update
+- cd node_modules/scratch-vm && ln -s $(npm root)/google-closure-library ../closure-library --force && npm --production=false install && cd -
 before_script: greenkeeper-lockfile-update
 script:
 - npm test
