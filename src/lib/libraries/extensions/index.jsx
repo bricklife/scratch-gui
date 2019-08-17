@@ -272,8 +272,8 @@ export default [
     {
         name: 'LEGO Powered Up + Sensors',
         extensionId: 'poweredUp',
-        iconURL: poweredUpImage,
-        insetIconURL: poweredUpMenuImage,
+        iconURL: poweredUpIconURL,
+        insetIconURL: poweredUpInsetIconURL,
         description: (
             <FormattedMessage
                 defaultMessage="Build with motors and sensors."
@@ -300,10 +300,10 @@ export default [
         helpLink: 'https://scratch.mit.edu/boost'
     },
     {
-        name: 'LEGO Powered Up + Sensors',
-        extensionId: 'poweredUp',
-        iconURL: poweredUpImage,
-        insetIconURL: poweredUpMenuImage,
+        name: 'LEGO Duplo Train',
+        extensionId: 'duploTrain',
+        iconURL: duploTrainIconURL,
+        insetIconURL: duploTrainInsetIconURL,
         description: (
             <FormattedMessage
                 defaultMessage="Build and control your train."
