@@ -19,8 +19,8 @@ before_install:
 - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
 - npm install -g greenkeeper-lockfile
 install:
-- npm install
-- npm update
+- npm --production=false install
+- npm --production=false update
 before_script: greenkeeper-lockfile-update
 script:
 - npm test
