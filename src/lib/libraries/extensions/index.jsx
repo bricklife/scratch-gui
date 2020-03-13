@@ -29,6 +29,11 @@ import ev3InsetIconURL from './ev3/ev3-small.svg';
 import ev3ConnectionIconURL from './ev3/ev3-hub-illustration.svg';
 import ev3ConnectionSmallIconURL from './ev3/ev3-small.svg';
 
+import spikeIconURL from './spike/spike.png';
+import spikeInsetIconURL from './spike/spike-small.svg';
+import spikeConnectionIconURL from './spike/spike-hub-illustration.svg';
+import spikeConnectionSmallIconURL from './spike/spike-small.svg';
+
 import wedo2IconURL from './wedo2/wedo.png'; // TODO: Rename file names to match variable/prop names?
 import wedo2InsetIconURL from './wedo2/wedo-small.svg';
 import wedo2ConnectionIconURL from './wedo2/wedo-illustration.svg';
@@ -234,6 +239,36 @@ export default [
                 defaultMessage="Connecting. Make sure the pin on your EV3 is set to 1234."
                 description="Message to help people connect to their EV3. Must note the PIN should be 1234."
                 id="gui.extension.ev3.connectingMessage"
+            />
+        ),
+        helpLink: 'https://scratch.mit.edu/ev3'
+    },
+    {
+        name: 'LEGO SPIKE Prime',
+        extensionId: 'spike',
+        collaborator: 'LEGO',
+        iconURL: spikeIconURL,
+        insetIconURL: spikeInsetIconURL,
+        description: (
+            <FormattedMessage
+                defaultMessage="Build interactive robots and more."
+                description="Description for the 'LEGO SPIKE Prime' extension"
+                id="gui.extension.spike.description"
+            />
+        ),
+        featured: true,
+        disabled: false,
+        bluetoothRequired: true,
+        internetConnectionRequired: true,
+        launchPeripheralConnectionFlow: true,
+        useAutoScan: false,
+        connectionIconURL: spikeConnectionIconURL,
+        connectionSmallIconURL: spikeConnectionSmallIconURL,
+        connectingMessage: (
+            <FormattedMessage
+                defaultMessage="Connecting."
+                description="Message to help people connect to their SPIKE Hub."
+                id="gui.extension.spike.connectingMessage"
             />
         ),
         helpLink: 'https://scratch.mit.edu/ev3'
