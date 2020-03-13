@@ -9,6 +9,7 @@ const {
     findByXpath,
     getDriver,
     getLogs,
+    Key,
     loadUri,
     rightClickText,
     scope
@@ -182,8 +183,13 @@ describe('Working with the blocks', () => {
 
         // Rename the costume
         await clickText('Costumes');
-        const el = await findByXpath("//input[@value='costume1']");
+        await clickText('costume2', scope.costumesTab);
+        const el = await findByXpath("//input[@value='costume2']");
         await el.sendKeys('newname');
+        await el.sendKeys(Key.ENTER);
+        // wait until the updated costume appears in costume item list panel
+        await findByXpath("//div[contains(@class,'sprite-selector-item_is-selected_')]" +
+            "//div[contains(text(), 'newname')]");
 
         // Make sure it is updated in the block menu
         await clickText('Code');
@@ -197,8 +203,13 @@ describe('Working with the blocks', () => {
 
         // Rename the costume
         await clickText('Costumes');
-        const el = await findByXpath("//input[@value='costume1']");
+        await clickText('costume2', scope.costumesTab);
+        const el = await findByXpath("//input[@value='costume2']");
         await el.sendKeys('<NewCostume>');
+        await el.sendKeys(Key.ENTER);
+        // wait until the updated costume appears in costume item list panel
+        await findByXpath("//div[contains(@class,'sprite-selector-item_is-selected_')]" +
+            "//div[contains(text(), '<NewCostume>')]");
 
         // Make sure it is updated in the block menu
         await clickText('Code');
@@ -209,40 +220,43 @@ describe('Working with the blocks', () => {
         await clickText('Sound', scope.blocksTab);
     });
 
-    // NOTE: This test describes the current behavior so that changes are not
-    // introduced inadvertly, but I know this is not the desired behavior
-    test('Adding costumes DOES NOT update the default costume name in the toolbox', async () => {
+    test('Adding costumes DOES update the default costume name in the toolbox', async () => {
         await loadUri(uri);
 
-        // By default, costume1 is in the costume tab
+        // By default, costume2 is in the costume tab
         await clickText('Looks', scope.blocksTab);
         await driver.sleep(500); // Wait for scroll to finish
-        await clickText('costume1', scope.blocksTab);
+        await clickText('costume2', scope.blocksTab);
 
-        // Also check that adding a new costume does not update the list
+        // Also check that adding a new costume does update the list
         await clickText('Costumes');
         const el = await findByXpath('//button[@aria-label="Choose a Costume"]');
         await driver.actions().mouseMove(el)
             .perform();
         await driver.sleep(500); // Wait for thermometer menu to come up
         await clickXpath('//button[@aria-label="Paint"]');
+        // wait until the new costume appears in costume item list panel
+        await findByXpath("//div[contains(@class,'sprite-selector-item_is-selected_')]" +
+            "//div[contains(text(), 'costume3')]");
         await clickText('costume3', scope.costumesTab);
-        // Check that the menu has not been updated
+        // Check that the menu has been updated
         await clickText('Code');
-        await clickText('costume1', scope.blocksTab);
+        await clickText('costume3', scope.blocksTab);
     });
 
-    // NOTE: This test describes the current behavior so that changes are not
-    // introduced inadvertly, but I know this is not the desired behavior
-    test('Adding a sound DOES NOT update the default sound name in the toolbox', async () => {
+    // Skipped because it was flakey on travis, but seems to run locally ok
+    test('Adding a sound DOES update the default sound name in the toolbox', async () => {
         await loadUri(uri);
         await clickText('Sounds');
         await clickXpath('//button[@aria-label="Choose a Sound"]');
         await clickText('A Bass', scope.modal); // Should close the modal
+        // wait until the selected sound appears in sounds item list panel
+        await findByXpath("//div[contains(@class,'sprite-selector-item_is-selected_')]" +
+            "//div[contains(text(), 'A Bass')]");
         await clickText('Code');
         await clickText('Sound', scope.blocksTab);
         await driver.sleep(500); // Wait for scroll to finish
-        await clickText('Meow', scope.blocksTab); // Meow, not A Bass
+        await clickText('A\u00A0Bass', scope.blocksTab); // Need &nbsp; for block text
     });
 
     // Regression test for switching between editor/player causing toolbox to stop updating
