@@ -4,6 +4,8 @@
   "description": "GraphicaL User Interface for creating and running Scratch 3.0 projects",
   "main": "./dist/scratch-gui.js",
   "scripts": {
+    "eslint": "./node_modules/eslint/bin/eslint.js",
+    "rimraf": "./node_modules/rimraf/bin.js",
     "build": "npm run clean && webpack --progress --colors --bail",
     "clean": "rimraf ./build && mkdirp build && rimraf ./dist && mkdirp dist",
     "deploy": "touch build/.nojekyll && gh-pages -t -d build -m \"Build for $(git log --pretty=format:%H -n1) [skip ci]\"",
